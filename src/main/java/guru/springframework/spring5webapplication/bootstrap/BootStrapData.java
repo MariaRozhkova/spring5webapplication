@@ -1,0 +1,42 @@
+package guru.springframework.spring5webapplication.bootstrap;
+
+import guru.springframework.spring5webapplication.model.Author;
+import guru.springframework.spring5webapplication.model.Book;
+import guru.springframework.spring5webapplication.repositories.AuthorRepository;
+import guru.springframework.spring5webapplication.repositories.BookRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class BootStrapData implements CommandLineRunner {
+
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        final Author firstAuthor = new Author("Harry", "Ray");
+        final Book firstBook = new Book("First book", "12345678");
+        firstAuthor.getBooks().add(firstBook);
+        firstBook.getAuthors().add(firstAuthor);
+
+        authorRepository.save(firstAuthor);
+        bookRepository.save(firstBook);
+
+        final Author secondAuthor = new Author("Alice", "Jey");
+        final Book secondBook = new Book("Second book", "7454645623");
+        secondAuthor.getBooks().add(secondBook);
+        secondBook.getAuthors().add(secondAuthor);
+
+        authorRepository.save(secondAuthor);
+        bookRepository.save(secondBook);
+
+        System.out.println("Saving authors and books is finished");
+        System.out.println("Saved books count = " + bookRepository.count());
+    }
+}

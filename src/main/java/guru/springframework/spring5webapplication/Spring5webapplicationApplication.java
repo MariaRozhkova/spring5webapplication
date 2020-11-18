@@ -2,6 +2,7 @@ package guru.springframework.spring5webapplication;
 
 import guru.springframework.spring5webapplication.controllers.I18nController;
 import guru.springframework.spring5webapplication.datasource.FakeDataSource;
+import guru.springframework.spring5webapplication.datasource.FakeJmsBroker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,6 +20,10 @@ public class Spring5webapplicationApplication {
         System.out.println(fakeDataSource.getUsername());
         System.out.println(fakeDataSource.getPassword());
         System.out.println(fakeDataSource.getUrl());
+
+        final FakeJmsBroker fakeJmsBroker = context.getBean(FakeJmsBroker.class);
+        System.out.println(fakeJmsBroker.getUsername());
+        System.out.println(fakeJmsBroker.getPassword());
     }
 
 }

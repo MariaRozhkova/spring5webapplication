@@ -3,3 +3,10 @@ guru:
     username: Kate_jms
     password: password_jms
     url: url_jms
+
+---
+spring:
+  profiles: DE
+guru:
+  jms:
+    username: Kate_jms_german

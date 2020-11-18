@@ -1,0 +1,5 @@
+guru:
+  jms:
+    username: Kate_jms
+    password: password_jms
+    url: url_jms
